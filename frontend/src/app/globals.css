@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-paper-50 text-ink-900 antialiased;
+}
+
+a {
+  @apply text-accent-700 hover:text-accent-600 underline-offset-4 hover:underline;
+}
