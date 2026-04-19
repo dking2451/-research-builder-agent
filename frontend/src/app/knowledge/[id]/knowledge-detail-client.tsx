@@ -5,7 +5,13 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { apiDelete, apiGet, apiPatch, apiPost } from "@/lib/api";
 import { canPromoteToConclusion, canPromoteToFinding, KNOWLEDGE_TYPES } from "@/lib/knowledge-ui";
-import type { KnowledgeDetail, KnowledgeItem, SourceRecordSummary } from "@/lib/types";
+import type {
+  EvidenceStrength,
+  KnowledgeDetail,
+  KnowledgeItem,
+  SourceRecordSummary,
+  VerificationStatus,
+} from "@/lib/types";
 
 const VERIFICATION = ["unverified", "partially_verified", "verified", "disputed"] as const;
 const STRENGTH = ["weak", "medium", "strong"] as const;
@@ -314,7 +320,9 @@ export function KnowledgeDetailClient(props: {
                   Verification
                   <select
                     value={verificationStatus}
-                    onChange={(e) => setVerificationStatus(e.target.value)}
+                    onChange={(e) =>
+                      setVerificationStatus(e.target.value as VerificationStatus)
+                    }
                     className="rounded-md border border-paper-100 bg-white px-3 py-2 text-sm"
                   >
                     {VERIFICATION.map((v) => (
@@ -328,7 +336,9 @@ export function KnowledgeDetailClient(props: {
                   Evidence strength
                   <select
                     value={evidenceStrength}
-                    onChange={(e) => setEvidenceStrength(e.target.value)}
+                    onChange={(e) =>
+                      setEvidenceStrength(e.target.value as EvidenceStrength)
+                    }
                     className="rounded-md border border-paper-100 bg-white px-3 py-2 text-sm"
                   >
                     {STRENGTH.map((v) => (
